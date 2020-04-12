@@ -16,11 +16,11 @@ for i in range(number_kolonok):
     d[key] = val
     b = a[2:]
     for m in range(len(b)):
-        key = b[i]
+        key = b[m]
         val = a[0]
         if (key in d) == False:
             d[key] = val
-        # ELIF!!!!
+        ELIF!!!!
         val = ''
     for t in range(len(b)):
         key = int(a[0])
@@ -44,11 +44,10 @@ for i in range(number_car):
     marka = f[2]
     print('В ', time, 'новый клиент:', time, ' ', marka, ' ', litr, ' ', time_zapravki,
           ' встал в очередь к автомату №', file=file_out)
-    for i in range(number_kolonok):
-        ii = str(i)
-        print('Автомат №', i, ' максимальная очередь: ', d[ii], ' Марки бензина:', d[i], ' -> ',  # KOL - BO
-              # ZVIZDOCHEK
-              )
+    for z in range(number_kolonok):
+        ii = str(z)
+        print('Автомат №', z, ' максимальная очередь: ', d[ii], ' Марки бензина:', d[z], ' -> ', KOL - BO
+        ZVIZDOCHEK)
         number_car = len(list)
 
         file_out.close()
