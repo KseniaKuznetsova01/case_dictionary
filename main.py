@@ -18,9 +18,10 @@ for i in range(number_kolonok):               # создаем словарь
     for m in range(len(b)):
         key = b[m]
         val = a[0]
-        if (key in d) == False:                # марка безина(ключ) - номер колонки(значение)
+        if key not in d:  # марка безина(ключ) - номер колонки(значение)
             d[key] = val
-        ELIF!!!!                              # если марка бенза есть - чтоб было два номера колонки(значение)
+        elif key in d:
+            d[key] += val  # если марка бенза есть - чтоб было два номера колонки(значение)
         val = ''
     for t in range(len(b)):                  # номер колонки(формат инта) - марка бенза(значение
         key = int(a[0])
@@ -41,13 +42,12 @@ for i in range(number_car):                          # присваиваем п
     time = f[0]
     litr = int(f[1])                                  # Нужно такой же принт для момента когда чел валит с заправки
     time_zapravki = math.ceil(litr / 10)         #звездочки(т.е. создать живую очередь к автоматам и отказывать если там много людей)
-    marka = f[2]                                             #и просуммировать то, что продали
-    print('В ', time, 'новый клиент:', time, ' ', marka, ' ', litr, ' ', time_zapravki,
-          ' встал в очередь к автомату №', file=file_out)
+    marka = f[2]  # и просуммировать то, что продали
+    print('В {} новый клиент: {} {} {} {} встал в очередь к автомату № '.format(time, time, marka,
+                                                                                litr, time_zapravki), file=file_out)
     for z in range(number_kolonok):
         ii = str(z)
-        print('Автомат №', z, ' максимальная очередь: ', d[ii], ' Марки бензина:', d[z], ' -> ', KOL - BO
-        ZVIZDOCHEK)
+        print('Автомат №', z, ' максимальная очередь: ', d[ii], ' Марки бензина:', d[z], ' -> ')
         number_car = len(list)
 
         file_out.close()
