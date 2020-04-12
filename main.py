@@ -16,7 +16,7 @@ for i in range(number_kolonok):
     d[key] = val
     b = a[2:]
     for m in range(len(b)):
-        key = b[i]
+        key = b[m]
         val = a[0]
         if (key in d) == False:
             d[key] = val
