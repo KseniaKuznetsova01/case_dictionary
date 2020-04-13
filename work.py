@@ -1,5 +1,7 @@
 import math
 
+zv = ''
+
 d = {'1': (3, 'АИ-80'), '2': (2, 'АИ-92'), '3': (4, 'АИ-92')}
 d1 = {'АИ-92': (3, 4, 2, 2), 'АИ-95': (3, 4), 'АИ-80': (1, 3), 'АИ-98': (3, 4)}
 list = [['1', '3', 'АИ-80'], ['2', '2', 'АИ-92'], ['3', '4', 'АИ-92', 'АИ-95', 'АИ-98']]
@@ -87,6 +89,13 @@ with open('output.txt', 'w') as file_out:
             if len(avtomat_0) > 3:
                 mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
 
-            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> '.format(inform, max_o, mark_benz),
+            if inform == 1:
+                zv = oz_na_1 * '*'
+            elif inform == 2:
+                zv = oz_na_2 * '*'
+            elif inform == 3:
+                zv = oz_na_3 * '*'
+
+            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> {}'.format(inform, max_o, mark_benz, zv),
                   file=file_out)
             number_car = len(list)
