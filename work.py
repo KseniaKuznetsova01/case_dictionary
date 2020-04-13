@@ -1,22 +1,21 @@
 import math
 
-
-list = []
+list0 = []
 list1 = []
 d = {}
 d1 = {}
 zv = ''
 with open('azs.txt') as azs_file:  # достали из файла азс, сделали список
     for line in azs_file.readlines():
-        list.append(line.split())
-number_kolonok = len(list)
+        list0.append(line.split())
+number_kolonok = len(list0)
 
-for i in list:
+for i in list0:
     d[i[0]] = int(i[1]), i[2]
     for elem in i:
         if elem[:2] == 'АИ':
             d1[elem] = int(i[0]), int(i[1])
-a = tuple(list[1][:2])
+a = tuple(list0[1][:2])
 d1['АИ-92'] += int(a[0]), int(a[1])
 
 kol_avtom = len(d) + 1
@@ -35,7 +34,7 @@ with open('input.txt') as inp_file:  # список из файла инпут
     for line in inp_file.readlines():
         list1.append(line.split())
 
-number_car = len(list)
+number_car = len(list0)
 
 with open('output.txt', 'w') as file_out:
     for klient in list1:
@@ -120,7 +119,7 @@ with open('output.txt', 'w') as file_out:
                                                                                                             time_zapr),
                       file=file_out)
 
-        for avtomat_0 in list:
+        for avtomat_0 in list0:
             inform = avtomat_0[0]
             max_o = avtomat_0[1]
             mark_benz = avtomat_0[2]
@@ -136,9 +135,10 @@ with open('output.txt', 'w') as file_out:
 
             print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> {}'.format(inform, max_o, mark_benz, zv),
                   file=file_out)
-            number_car = len(list)
-print('Не заправились: ', nezapravilsa)
-print ('АИ-80 :', aivos )
-print ('АИ-92 :', aidevvt)
-print ('АИ-95 :', aidevpat)
-print ('АИ-98 :', aidevvos)
+            number_car = len(list0)
+
+print('Не заправились: {}'.format(nezapravilsa))
+print('АИ-80 : {}'.format(aivos))
+print('АИ-92 : {}'.format(aidevvt))
+print('АИ-95 : {}'.format(aidevpat))
+print('АИ-98 : {}'.format(aidevvos))
