@@ -58,12 +58,11 @@ list = [['1', '3', 'АИ-80'], ['2', '2', 'АИ-92'], ['3', '4', 'АИ-92', 'А�
 d = {}
 d1 = {}
 for i in list:
-    d[i[0]] = i[1:]
+    d[i[0]] = int(i[1]), i[2]
     for elem in i:
         if elem[:2] == 'АИ':
-            d1[elem] = i[0], i[1]
+            d1[elem] = int(i[0]), int(i[1])
 a = tuple(list[1][:2])
-print(a)
-d1['АИ-92'] += a
+d1['АИ-92'] += int(a[0]), int(a[1])
 print(d)
 print(d1)
