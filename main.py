@@ -8,24 +8,19 @@ with open('azs.txt') as azs_file:  # достали из файла азс, сд
         list.append(line.split())
 number_kolonok = len(list)
 
-for i in range(number_kolonok):  # создаем словарь
-    a = list[i]
-    key = a[0]
-    val = a[1]
-    d[key] = val  # номер колонки(строковый формат) - максимальное кол-во машин в очереди
-    b = a[2:]
-    for m in range(len(b)):
-        key = b[m]
-        val = a[0]
-        if key not in d:  # марка безина(ключ) - номер колонки(значение)
-            d[key] = val
-        elif key in d:
-            d[key] += val  # если марка бенза есть - чтоб было два номера колонки(значение)
-        val = ''
-    for t in range(len(b)):  # номер колонки(формат инта) - марка бенза(значение
-        key = int(a[0])
-        val += b[t]
-    d[key] = val
+# СЛОВАРИ
+d1 = {}
+for i in list:
+    d[i[0]] = int(i[1]), i[2]
+    for elem in i:
+        if elem[:2] == 'АИ':
+            d1[elem] = int(i[0]), int(i[1])
+a = tuple(list[1][:2])
+d1['АИ-92'] += int(a[0]), int(a[1])
+print(d)
+print(d1)
+
+
 
 file_out = open('output.txt', 'w')
 file_out.close()
@@ -48,21 +43,6 @@ with open('output.txt', 'a') as file_out:
               file=file_out)
 
         for z in range(1, number_kolonok + 1):
-            ii = str(z)
-            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> '.format(z, d[ii], d[z]), file=file_out)
+            a = d['номер колонки']
+            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> '.format(z, a[1], 'номер колонки'), file=file_out)
             number_car = len(list)
-
-# СЛОВАРИ
-
-list = [['1', '3', 'АИ-80'], ['2', '2', 'АИ-92'], ['3', '4', 'АИ-92', 'АИ-95', 'АИ-98']]
-d = {}
-d1 = {}
-for i in list:
-    d[i[0]] = int(i[1]), i[2]
-    for elem in i:
-        if elem[:2] == 'АИ':
-            d1[elem] = int(i[0]), int(i[1])
-a = tuple(list[1][:2])
-d1['АИ-92'] += int(a[0]), int(a[1])
-print(d)
-print(d1)
