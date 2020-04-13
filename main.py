@@ -8,7 +8,6 @@ with open('azs.txt') as azs_file:  # достали из файла азс, сд
         list.append(line.split())
 number_kolonok = len(list)
 
-# СЛОВАРИ
 d1 = {}
 for i in list:
     d[i[0]] = int(i[1]), i[2]
@@ -44,5 +43,6 @@ with open('output.txt', 'a') as file_out:
 
         for z in range(1, number_kolonok + 1):
             a = d['номер колонки']
-            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> '.format(z, a[1], 'номер колонки'), file=file_out)
+            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> '.format(z, a[1], 'номер колонки'),
+                  file=file_out)
             number_car = len(list)
