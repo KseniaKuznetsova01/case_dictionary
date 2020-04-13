@@ -1,16 +1,16 @@
-
-zv = ''
 import math
+
 
 list = []
 list1 = []
 d = {}
+d1 = {}
+zv = ''
 with open('azs.txt') as azs_file:  # достали из файла азс, сделали список
     for line in azs_file.readlines():
         list.append(line.split())
 number_kolonok = len(list)
 
-d1 = {}
 for i in list:
     d[i[0]] = int(i[1]), i[2]
     for elem in i:
