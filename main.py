@@ -3,17 +3,16 @@ import math
 list = []
 list1 = []
 d = {}
-with open('azs.txt') as azs_file:               # достали из файла азс, сделали список
+with open('azs.txt') as azs_file:  # достали из файла азс, сделали список
     for line in azs_file.readlines():
         list.append(line.split())
-print(list)
 number_kolonok = len(list)
 
-for i in range(number_kolonok):               # создаем словарь
+for i in range(number_kolonok):  # создаем словарь
     a = list[i]
     key = a[0]
     val = a[1]
-    d[key] = val                            # номер колонки(строковый формат) - максимальное кол-во машин в очереди
+    d[key] = val  # номер колонки(строковый формат) - максимальное кол-во машин в очереди
     b = a[2:]
     for m in range(len(b)):
         key = b[m]
@@ -23,7 +22,7 @@ for i in range(number_kolonok):               # создаем словарь
         elif key in d:
             d[key] += val  # если марка бенза есть - чтоб было два номера колонки(значение)
         val = ''
-    for t in range(len(b)):                  # номер колонки(формат инта) - марка бенза(значение
+    for t in range(len(b)):  # номер колонки(формат инта) - марка бенза(значение
         key = int(a[0])
         val += b[t]
     d[key] = val
@@ -36,23 +35,22 @@ with open('input.txt') as inp_file:  # список из файла инпут
         list1.append(line.split())
 
 number_car = len(list)
-file_out = open('output.txt', 'a')
-for i in range(number_car):  # присваиваем переменным данные из инпута, время, кол-во литров
-    f = list1[i]  # время заправки и марку(ниже вывод данных моделирования в файл аутпут)
-    time = f[0]
-    litr = int(f[1])                                  # Нужно такой же принт для момента когда чел валит с заправки
-    time_zapravki = math.ceil(
-        litr / 10)  # звездочки (т.е. создать живую очередь к автоматам и отказывать если там много людей)
-    marka = f[2]  # и просуммировать то, что продали
-    print('В {} новый клиент: {} {} {} {} встал в очередь к автомату № '.format(time, time, marka, litr, time_zapravki),
-          file=file_out)
-    for z in range(number_kolonok):
-        ii = str(z)
-        print('Автомат №', z, ' максимальная очередь: ', d[ii], ' Марки бензина:', d[z], ' -> ')
-        number_car = len(list)
+with open('output.txt', 'a') as file_out:
+    for i in range(number_car):  # присваиваем переменным данные из инпута, время, кол-во литров
+        f = list1[i]  # время заправки и марку(ниже вывод данных моделирования в файл аутпут)
+        time = f[0]
+        litr = int(f[1])  # Нужно такой же принт для момента когда чел валит с заправки
+        time_zapravki = math.ceil(
+            litr / 10)  # звездочки (т.е. создать живую очередь к автоматам и отказывать если там много людей)
+        marka = f[2]  # и просуммировать то, что продали
+        print('В {} новый клиент: {} {} {} {} встал в очередь к автомату № {}'.format(time, time, marka, litr,
+                                                                                      time_zapravki, d[marka]),
+              file=file_out)
 
-        file_out.close()
-
+        for z in range(1, number_kolonok + 1):
+            ii = str(z)
+            print('Автомат № {} максимальная очередь: {} Марки бензина: {} -> '.format(z, d[ii], d[z]), file=file_out)
+            number_car = len(list)
 
 # СЛОВАРИ
 
