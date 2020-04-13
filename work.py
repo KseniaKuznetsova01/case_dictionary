@@ -5,6 +5,18 @@ list1 = []
 d = {}
 d1 = {}
 zv = ''
+kol_avtom = len(d) + 1
+nezapravilsa = 0
+aivos = 0
+aidevvt = 0
+aidevvos = 0
+aidevpat = 0
+avtomat = 0
+oz_na_1 = 0  # очередь на 1 колонку
+oz_na_2 = 0  # очередь на 2 колонку
+oz_na_3 = 0  # очередь на 3 колонку
+oz = 0
+
 with open('azs.txt') as azs_file:  # достали из файла азс, сделали список
     for line in azs_file.readlines():
         list0.append(line.split())
@@ -18,19 +30,7 @@ for i in list0:
 a = tuple(list0[1][:2])
 d1['АИ-92'] += int(a[0]), int(a[1])
 
-kol_avtom = len(d) + 1
-nezapravilsa = 0
-aivos = 0
-aidevvt = 0
-aidevvos = 0
-aidevpat = 0
-avtomat = 0
-oz_na_1 = 0  # очередь на 1 колонку
-oz_na_2 = 0  # очередь на 2 колонку
-oz_na_3 = 0  # очередь на 3 колонку
-oz = 0
-
-with open('input.txt') as inp_file:  # список из файла инпут
+with open('input.txt', 'r') as inp_file:
     for line in inp_file.readlines():
         list1.append(line.split())
 
@@ -137,8 +137,8 @@ with open('output.txt', 'w') as file_out:
                   file=file_out)
             number_car = len(list0)
 
-print('Не заправились: {}'.format(nezapravilsa))
-print('АИ-80 : {}'.format(aivos))
-print('АИ-92 : {}'.format(aidevvt))
-print('АИ-95 : {}'.format(aidevpat))
-print('АИ-98 : {}'.format(aidevvos))
+print('Не заправились: {}'.format(nezapravilsa), file=file_out)
+print('АИ-80 : {}'.format(aivos), file=file_out)
+print('АИ-92 : {}'.format(aidevvt), file=file_out)
+print('АИ-95 : {}'.format(aidevpat), file=file_out)
+print('АИ-98 : {}'.format(aidevvos), file=file_out)
