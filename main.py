@@ -163,7 +163,7 @@ with open('output.txt', 'w') as file_out:
             if oz_na_3 <= d1[lc.AI_95][1]:
                 avtomat = d1[lc.AI_95][0]
                 oz = oz_na_3
-                print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
+                print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_l itr, time_zapr, avtomat), file=file_out)
 
                 if toplivo == lc.AI_95:
                     aidevpat += int(kol_litr)
