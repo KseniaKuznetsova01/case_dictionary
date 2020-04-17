@@ -332,7 +332,7 @@ with open('output.txt', 'w') as file_out:
         base_klient[time_go] = time_res, toplivo, kol_litr, time_zapr, avtomat
         base.append(base_klient)
         d = base[0]  # база данных о водителях
-
+        print(d)
         # вот тут теперь нужно написать если время отъезда какого-то чувака из базы меньше, то мы выводим ,что он заправился и свалил.
 
 with open('output.txt', 'a+') as file_out:
