@@ -103,7 +103,7 @@ with open('output.txt', 'w') as file_out:
                         else:
                             oz_na_3 -= 1
                     elif value[1] == lc.AI_95 or value == lc.AI_98:
-                        oz_na_3 += 1
+                        oz_na_3 -= 1
 
                     for avtomat_0 in list0:
                         inform = avtomat_0[0]
