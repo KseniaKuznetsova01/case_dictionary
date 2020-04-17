@@ -87,8 +87,8 @@ with open('output.txt', 'w') as file_out:
 
         for key, value in d:
             a = value[0]
-
-            !!!!!!!!
+            if int(a[0]) <= int(time_go[:2]) or int(a[3:]) <= int(time_go):
+                print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]))
                 if value[1] == lc.AI_80:
                     oz_na_1 -= 1
                 elif value[1] == lc.AI_92:
