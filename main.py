@@ -92,8 +92,8 @@ with open('output.txt', 'w') as file_out:
             a = value[0]
 
             if (int(a[:2]) <= int(time_go[:2])) or (int(a[:2]) == int(time_go[:2])) and (int(a[3:]) < int(time_go[3:])):
-                if int(a) != 0:
-                    print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]))
+                if int(a[0]) != 0 and len(str(a)) != 1:
+                    print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]), file=file_out)
 
                 if value[1] == lc.AI_80:
                     oz_na_1 -= 1
@@ -201,5 +201,3 @@ with open('output.txt', 'a+') as file_out:
     print(lc.TEXT_6.format(nezapravilsa, math.floor(nezapravilsa * 44.8625)), file=file_out)
     print(lc.TEXT_7.format(math.floor(aivos * 38.95 + aidevvt * 40.35 + aidevpat * 42.55 + aidevvos * 49.2)),
           file=file_out)
-
-
