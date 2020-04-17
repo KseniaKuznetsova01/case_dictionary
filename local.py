@@ -17,3 +17,5 @@ ZV = '*'
 N1 = '1'
 N2 = '2'
 N3 = '3'
+#if ((int(a[:2]) <= int(time_go[:2])) or ((int(a[3:])<=int(time_go[3:])):
+ #               print(lc.TEXT_3.format(key,a,value[1],value[2],value[3],value[4]))
