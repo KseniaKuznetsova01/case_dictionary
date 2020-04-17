@@ -86,7 +86,8 @@ with open('output.txt', 'w') as file_out:
         base.append(base_klient)
         d = base[0]  # база данных о водителях
 
-        for key, value in d:
+        for key in d:
+            value = d[key]
             a = value[0]
 
             if (int(a[:2]) <= int(time_go[:2])) or (int(a[:2]) == int(time_go[:2])) and (int(a[3:]) < int(time_go[3:])):
