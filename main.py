@@ -91,7 +91,8 @@ with open('output.txt', 'w') as file_out:
             a = value[0]
 
             if (int(a[:2]) <= int(time_go[:2])) or (int(a[:2]) == int(time_go[:2])) and (int(a[3:]) < int(time_go[3:])):
-                print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]))
+                if int(a) != 0:
+                    print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]))
 
                 if value[1] == lc.AI_80:
                     oz_na_1 -= 1
@@ -118,7 +119,7 @@ with open('output.txt', 'w') as file_out:
                         zv = oz_na_3 * lc.ZV
 
                     print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
-                d.pop(key)
+                d[key] = '0','', '','',''
 
         if toplivo == lc.AI_80:
             oz_na_1 += 1
