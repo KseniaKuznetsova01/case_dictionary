@@ -24,6 +24,7 @@ oz_na_2 = 0
 oz_na_3 = 0
 oz = 0
 l = 0
+
 with open('azs.txt') as azs_file:
     for line in azs_file.readlines():
         list0.append(line.split())
@@ -129,7 +130,6 @@ with open('output.txt', 'w') as file_out:
                 print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
                 oz = oz_na_1
 
-
             elif oz_na_1 > d1[lc.AI_80][1]:
                 oz_na_1 -= 1
                 nezapravilsa += 1
@@ -143,7 +143,6 @@ with open('output.txt', 'w') as file_out:
                 oz = oz_na_2
                 aidevvt += int(kol_litr)
                 print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
-
 
             elif oz_na_2 > d1[lc.AI_92][3] and oz_na_2 <= d1[lc.AI_92][1]:
                 avtomat = d1[lc.AI_92][0]
@@ -169,8 +168,6 @@ with open('output.txt', 'w') as file_out:
                 elif toplivo == lc.AI_95:
                     aidevvos += int(kol_litr)
 
-
-
             elif oz_na_3 > d1[lc.AI_95][1]:
                 oz_na_3 -= 1
                 nezapravilsa += 1
@@ -193,7 +190,6 @@ with open('output.txt', 'w') as file_out:
             print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
             number_car = len(list0)
 
-        # вот тут теперь нужно написать если время отъезда какого-то чувака из базы меньше, то мы выводим ,что он заправился и свалил.
 
 with open('output.txt', 'a+') as file_out:
     print(lc.TEXT_5_80.format(aivos, math.floor(aivos * 38.95)), file=file_out)
