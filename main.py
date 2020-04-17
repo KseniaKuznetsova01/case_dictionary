@@ -95,32 +95,32 @@ with open('output.txt', 'w') as file_out:
                 if int(a[0]) != 0 and len(str(a)) != 1:
                     print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]), file=file_out)
 
-                if value[1] == lc.AI_80:
-                    oz_na_1 -= 1
-                elif value[1] == lc.AI_92:
-                    if oz_na_2 > 0:
-                        oz_na_2 -= 1
-                    else:
-                        oz_na_3 -= 1
-                elif value[1] == lc.AI_95 or value == lc.AI_98:
-                    oz_na_3 += 1
+                    if value[1] == lc.AI_80:
+                        oz_na_1 -= 1
+                    elif value[1] == lc.AI_92:
+                        if oz_na_2 > 0:
+                            oz_na_2 -= 1
+                        else:
+                            oz_na_3 -= 1
+                    elif value[1] == lc.AI_95 or value == lc.AI_98:
+                        oz_na_3 += 1
 
-                for avtomat_0 in list0:
-                    inform = avtomat_0[0]
-                    max_o = avtomat_0[1]
-                    mark_benz = avtomat_0[2]
-                    if len(avtomat_0) > 3:
-                        mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
+                    for avtomat_0 in list0:
+                        inform = avtomat_0[0]
+                        max_o = avtomat_0[1]
+                        mark_benz = avtomat_0[2]
+                        if len(avtomat_0) > 3:
+                            mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
 
-                    if inform == lc.N1:
-                        zv = oz_na_1 * lc.ZV
-                    elif inform == lc.N2:
-                        zv = oz_na_2 * lc.ZV
-                    elif inform == lc.N3:
-                        zv = oz_na_3 * lc.ZV
+                        if inform == lc.N1:
+                            zv = oz_na_1 * lc.ZV
+                        elif inform == lc.N2:
+                            zv = oz_na_2 * lc.ZV
+                        elif inform == lc.N3:
+                            zv = oz_na_3 * lc.ZV
 
-                    print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
-                d[key] = '0','', '','',''
+                        print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
+                    d[key] = '0','', '','',''
 
         if toplivo == lc.AI_80:
             oz_na_1 += 1
@@ -163,7 +163,7 @@ with open('output.txt', 'w') as file_out:
             if oz_na_3 <= d1[lc.AI_95][1]:
                 avtomat = d1[lc.AI_95][0]
                 oz = oz_na_3
-                print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
+                print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_l itr, time_zapr, avtomat), file=file_out)
 
                 if toplivo == lc.AI_95:
                     aidevpat += int(kol_litr)
