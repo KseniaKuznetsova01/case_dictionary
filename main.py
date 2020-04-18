@@ -23,7 +23,9 @@ oz_na_1 = 0
 oz_na_2 = 0
 oz_na_3 = 0
 oz = 0
-l = 0
+first = set()
+second = set()
+third = set()
 
 with open('azs.txt') as azs_file:
     for line in azs_file.readlines():
@@ -47,7 +49,10 @@ number_car = len(list0)
 base_klient = {}
 base = []
 
-with open('output.txt', 'w') as file_out:
+file_out = open('output.txt', 'w')
+file_out.close()
+
+with open('output.txt', 'a') as file_out:
     for klient in list1:
         time_go = klient[0]
         kol_litr = klient[1]
@@ -95,15 +100,9 @@ with open('output.txt', 'w') as file_out:
                 if int(a[0]) != 0 and len(str(a)) != 1:
                     print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]), file=file_out)
 
-                    if value[1] == lc.AI_80:
-                        oz_na_1 -= 1
-                    elif value[1] == lc.AI_92:
-                        if oz_na_2 > 0:
-                            oz_na_2 -= 1
-                        else:
-                            oz_na_3 -= 1
-                    elif value[1] == lc.AI_95 or value == lc.AI_98:
-                        oz_na_3 -= 1
+                    first.discard(key)
+                    second.discard(key)
+                    third.discard(key)
 
                     for avtomat_0 in list0:
                         inform = avtomat_0[0]
@@ -113,17 +112,18 @@ with open('output.txt', 'w') as file_out:
                             mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
 
                         if inform == lc.N1:
-                            zv = oz_na_1 * lc.ZV
+                            zv = len(first) * lc.ZV
                         elif inform == lc.N2:
-                            zv = oz_na_2 * lc.ZV
+                            zv = len(second) * lc.ZV
                         elif inform == lc.N3:
-                            zv = oz_na_3 * lc.ZV
+                            zv = len(third) * lc.ZV
 
                         print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
                     d[key] = '0','', '','',''
 
         if toplivo == lc.AI_80:
             oz_na_1 += 1
+            first.add(time_go)
 
             if oz_na_1 <= d1[lc.AI_80][1]:
 
@@ -134,11 +134,12 @@ with open('output.txt', 'w') as file_out:
 
             elif oz_na_1 > d1[lc.AI_80][1]:
                 oz_na_1 -= 1
+                first.discard(time_go)
                 nezapravilsa += 1
                 print(lc.TEXT_2.format(time_go, time_go, toplivo, kol_litr, time_zapr), file=file_out)
 
         elif toplivo == lc.AI_92:
-
+            second.add(time_go)
             oz_na_2 += 1
             if oz_na_2 <= d1[lc.AI_92][3]:
                 avtomat = d1[lc.AI_92][2]
@@ -154,11 +155,12 @@ with open('output.txt', 'w') as file_out:
 
             elif oz_na_2 > d1[lc.AI_92][1]:
                 oz_na_2 -= 1
+                second.discard(time_go)
                 nezapravilsa += 1
                 print(lc.TEXT_2.format(time_go, time_go, toplivo, kol_litr, time_zapr), file=file_out)
 
         elif toplivo == lc.AI_95 or toplivo == lc.AI_98:
-
+            third.add(time_go)
             oz_na_3 += 1
             if oz_na_3 <= d1[lc.AI_95][1]:
                 avtomat = d1[lc.AI_95][0]
@@ -171,6 +173,7 @@ with open('output.txt', 'w') as file_out:
                     aidevvos += int(kol_litr)
 
             elif oz_na_3 > d1[lc.AI_95][1]:
+                third.discard(time_go)
                 oz_na_3 -= 1
                 nezapravilsa += 1
                 print(lc.TEXT_2.format(time_go, time_go, toplivo, kol_litr, time_zapr), file=file_out)
@@ -183,11 +186,11 @@ with open('output.txt', 'w') as file_out:
                 mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
 
             if inform == lc.N1:
-                zv = oz_na_1 * lc.ZV
+                zv = len(first) * lc.ZV
             elif inform == lc.N2:
-                zv = oz_na_2 * lc.ZV
+                zv = len(second) * lc.ZV
             elif inform == lc.N3:
-                zv = oz_na_3 * lc.ZV
+                zv = len(third) * lc.ZV
 
             print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
             number_car = len(list0)
