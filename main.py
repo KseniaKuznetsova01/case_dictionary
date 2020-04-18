@@ -23,9 +23,8 @@ oz_na_1 = 0
 oz_na_2 = 0
 oz_na_3 = 0
 oz = 0
-first = set()
-second = set()
-third = set()
+l = 0
+t_max = 23
 
 with open('azs.txt') as azs_file:
     for line in azs_file.readlines():
@@ -49,10 +48,7 @@ number_car = len(list0)
 base_klient = {}
 base = []
 
-file_out = open('output.txt', 'w')
-file_out.close()
-
-with open('output.txt', 'a') as file_out:
+with open('output.txt', 'w') as file_out:
     for klient in list1:
         time_go = klient[0]
         kol_litr = klient[1]
@@ -65,11 +61,12 @@ with open('output.txt', 'a') as file_out:
         part_2 = time_start[3:]
         time_res = ''
         pol = int(time_start[3:]) + time_zapr
+
         if len(str(pol)) == 1:
             pol = '0' + str(pol)
             pol_ = int(pol)
         if pol_ > 60:
-            if int(time_start[:2]) == 23:
+            if int(time_start[:2]) == t_max:
                 part_2 = str(pol - 60)
                 part_1 = '00'
             else:
@@ -100,9 +97,24 @@ with open('output.txt', 'a') as file_out:
                 if int(a[0]) != 0 and len(str(a)) != 1:
                     print(lc.TEXT_3.format(key, a, value[1], value[2], value[3], value[4]), file=file_out)
 
-                    first.discard(key)
-                    second.discard(key)
-                    third.discard(key)
+                    if value[1] == lc.AI_80:
+                        oz_na_1 -= 1
+                        if oz_na_1 < 0:
+                            oz_na_1 = 0
+                    elif value[1] == lc.AI_92:
+                        if oz_na_2 > 0:
+                            oz_na_2 -= 1
+                            if oz_na_2 < 0:
+                                oz_na_2 = 0
+                        else:
+                            oz_na_3 -= 1
+                            if oz_na_3 < 0:
+                                oz_na_3 = 0
+
+                    elif value[1] == lc.AI_95 or value == lc.AI_98:
+                        oz_na_3 -= 1
+                        if oz_na_3 < 0:
+                            oz_na_3 = 0
 
                     for avtomat_0 in list0:
                         inform = avtomat_0[0]
@@ -112,38 +124,36 @@ with open('output.txt', 'a') as file_out:
                             mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
 
                         if inform == lc.N1:
-                            zv = len(first) * lc.ZV
+                            zv = oz_na_1 * lc.ZV
                         elif inform == lc.N2:
-                            zv = len(second) * lc.ZV
+                            zv = oz_na_2 * lc.ZV
                         elif inform == lc.N3:
-                            zv = len(third) * lc.ZV
+                            zv = oz_na_3 * lc.ZV
 
                         print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
                     d[key] = '0','', '','',''
 
         if toplivo == lc.AI_80:
             oz_na_1 += 1
-            first.add(time_go)
 
             if oz_na_1 <= d1[lc.AI_80][1]:
-
+                if oz_na_1 < 0:
+                    oz_na_1 = 0
                 aivos += int(kol_litr)
                 avtomat = d1[lc.AI_80][0]
                 print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
-                oz = oz_na_1
+
 
             elif oz_na_1 > d1[lc.AI_80][1]:
                 oz_na_1 -= 1
-                first.discard(time_go)
                 nezapravilsa += 1
                 print(lc.TEXT_2.format(time_go, time_go, toplivo, kol_litr, time_zapr), file=file_out)
 
         elif toplivo == lc.AI_92:
-            second.add(time_go)
+
             oz_na_2 += 1
             if oz_na_2 <= d1[lc.AI_92][3]:
                 avtomat = d1[lc.AI_92][2]
-                oz = oz_na_2
                 aidevvt += int(kol_litr)
                 print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
 
@@ -155,25 +165,22 @@ with open('output.txt', 'a') as file_out:
 
             elif oz_na_2 > d1[lc.AI_92][1]:
                 oz_na_2 -= 1
-                second.discard(time_go)
                 nezapravilsa += 1
                 print(lc.TEXT_2.format(time_go, time_go, toplivo, kol_litr, time_zapr), file=file_out)
 
         elif toplivo == lc.AI_95 or toplivo == lc.AI_98:
-            third.add(time_go)
+
             oz_na_3 += 1
             if oz_na_3 <= d1[lc.AI_95][1]:
                 avtomat = d1[lc.AI_95][0]
-                oz = oz_na_3
                 print(lc.TEXT_1.format(time_go, time_go, toplivo, kol_litr, time_zapr, avtomat), file=file_out)
 
                 if toplivo == lc.AI_95:
                     aidevpat += int(kol_litr)
-                elif toplivo == lc.AI_95:
+                elif toplivo == lc.AI_98:
                     aidevvos += int(kol_litr)
 
             elif oz_na_3 > d1[lc.AI_95][1]:
-                third.discard(time_go)
                 oz_na_3 -= 1
                 nezapravilsa += 1
                 print(lc.TEXT_2.format(time_go, time_go, toplivo, kol_litr, time_zapr), file=file_out)
@@ -186,11 +193,11 @@ with open('output.txt', 'a') as file_out:
                 mark_benz = avtomat_0[2] + ' ' + avtomat_0[3] + ' ' + avtomat_0[4]
 
             if inform == lc.N1:
-                zv = len(first) * lc.ZV
+                zv = oz_na_1 * lc.ZV
             elif inform == lc.N2:
-                zv = len(second) * lc.ZV
+                zv = oz_na_2 * lc.ZV
             elif inform == lc.N3:
-                zv = len(third) * lc.ZV
+                zv = oz_na_3 * lc.ZV
 
             print(lc.TEXT_4.format(inform, max_o, mark_benz, zv), file=file_out)
             number_car = len(list0)
